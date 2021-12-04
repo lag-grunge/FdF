@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "actions.h"
 
 int	change_camera(t_vars_fdf *vars_fdf)
 {

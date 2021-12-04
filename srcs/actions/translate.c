@@ -1,4 +1,6 @@
-#include "fdf.h"
+#include "../includes/fdf.h"
+
+#include "actions.h"
 
 int translate(t_vars_fdf *vars_fdf, int x, int y)
 {

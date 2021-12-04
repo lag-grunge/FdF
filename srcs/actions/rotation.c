@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "actions.h"
 
-void	rotation_z(t_world_pnt *w)
+static void	rotation_z(t_world_pnt *w)
 {
 	double	angle;
 	double	tmp_x;
@@ -23,7 +23,7 @@ void	rotation_z(t_world_pnt *w)
 	w->y = tmp_x * sin(angle) + w->y * cos(angle);
 }
 
-int	comp_world_rotates(t_map *map)
+static int	comp_world_rotates(t_map *map)
 {
 	static int		time_elapsed;
 	t_world_pnt		w_pnt_center_offset;

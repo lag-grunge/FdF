@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "Input_Exit.h"
 
 size_t	get_map_width(int fd)
 {

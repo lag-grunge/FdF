@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "params.h"
 
 double	calc_tile(t_vars_fdf *vars_fdf, double start_tile)
 {

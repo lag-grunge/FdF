@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "iter.h"
 
 void	iter_world(t_map *map, void (*func)(), void *par)
 {

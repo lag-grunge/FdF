@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "draw.h"
 
 static void	create_image(t_vars_fdf *vars_fdf, t_data *data)
 {
@@ -35,7 +35,7 @@ void	init_frames(t_vars_fdf *vars_fdf)
 	create_image(vars_fdf, vars_fdf->frms[1]);
 }
 
-void	put_image(t_vars_fdf *vars_fdf, t_data	*data)
+static void	put_image(t_vars_fdf *vars_fdf, t_data	*data)
 {
 	int	x;
 	int	y;

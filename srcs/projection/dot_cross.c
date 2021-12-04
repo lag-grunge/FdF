@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "projection.h"
 
 double	dest_square(t_world_pnt a)
 {

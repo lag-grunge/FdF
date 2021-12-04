@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "Input_Exit.h"
+#include "draw.h"
+#include "actions.h"
 
 static void	init_states(t_vars_fdf *vars_fdf)
 {

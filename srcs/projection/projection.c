@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "projection.h"
 
 void	comp_view_pnt(t_view_pnt *view_pnt, t_vars_fdf *vars_fdf)
 {
@@ -28,7 +28,7 @@ void	comp_view_pnt(t_view_pnt *view_pnt, t_vars_fdf *vars_fdf)
 	view_pnt->color = map->color[i][j];
 }
 
-void	init_screen(t_vars_fdf *vars_fdf)
+static void	init_screen(t_vars_fdf *vars_fdf)
 {
 	vars_fdf->screen_min.x = INFINITY;
 	vars_fdf->screen_min.y = INFINITY;

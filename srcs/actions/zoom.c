@@ -1,4 +1,4 @@
-#include "fdf.h"
+#include "actions.h"
 
 int zoom(t_vars_fdf *vars_fdf, int in_out)
 {

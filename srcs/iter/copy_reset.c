@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "iter.h"
 
 void	copy_view_pnt(t_view_pnt *view_pnt, t_vars_fdf *vars_fdf)
 {

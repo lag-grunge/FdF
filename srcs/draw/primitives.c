@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "draw.h"
 
-void	my_pixel_put(t_data	*data, t_view_pnt *view_pnt, int color)
+static void	my_pixel_put(t_data	*data, t_view_pnt *view_pnt, int color)
 {
 	char	*dst;
 	int		x;
@@ -35,7 +35,7 @@ static size_t	calc_step(double dx, double dy)
 	return (dx);
 }
 
-void	dda_line_put(t_data	*data, t_view_pnt *a, t_view_pnt *b)
+static void	dda_line_put(t_data	*data, t_view_pnt *a, t_view_pnt *b)
 {
 	double	dx;
 	double	dy;

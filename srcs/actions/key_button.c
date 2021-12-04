@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "actions.h"
 
 int	key_press_handle(int keycode, t_vars_fdf *vars_fdf)
 {

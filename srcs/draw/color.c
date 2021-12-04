@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "draw.h"
 
 int	color_func(int color1, int color2, char c)
 {
