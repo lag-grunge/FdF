@@ -4,13 +4,13 @@ SRCS_LIST_ACT := key_button.c change_camera.c rotation.c zoom.c translate.c
 DIR_ACT = ./srcs/actions
 SRCS_LIST_PROJ := model.c projection.c dot_cross.c proj_utils.c
 DIR_PROJ = ./srcs/projection
-SRCS_LIST_PAR :=	params.c max_size.c
+SRCS_LIST_PAR :=	params.c max_size.c pars.c
 DIR_PAR = ./srcs/params
 SRCS_LIST_DRAW := render.c  primitives.c color.c
 DIR_DRAW = ./srcs/draw
 SRCS_LIST_IN_EXIT := init.c input.c free_map.c destroy.c bad_alloc_exit.c
 DIR_IN_EXIT = ./srcs/Input_Exit
-SRCS_LIST_ITER =	iter.c copy_reset.c plus_minus_inplace.c find_min_max.c
+SRCS_LIST_ITER =	iter.c copy_reset.c plus_minus_inplace.c find_min_max.c debug.c
 DIR_ITER = ./srcs/iter
 SRCS_ACT = $(addprefix ${DIR_ACT}/,${SRCS_LIST_ACT})
 SRCS_PROJ = $(addprefix ${DIR_PROJ}/,${SRCS_LIST_PROJ})
@@ -35,7 +35,7 @@ LIBFT = libft.a
 LIBFT_DIR = ./libft
 
 CC = gcc
-CFLAGS := -g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS := -g -Wall -Wextra -Werror -fsanitize=address -MMD
 LDFLAGS := -L${LIBFT_DIR} -L${MLX_DIR}
 
 OS = $(shell uname -s)
@@ -88,7 +88,7 @@ ${OBJS_DIR} :
 
 clean :
 	make clean -C ${LIBFT_DIR}
-	rm -rf ${OBJS}
+	rm -rf ${OBJS} ${DEPS}
 
 fclean : clean
 	rm -rf ${LIBFT}

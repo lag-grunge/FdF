@@ -15,5 +15,7 @@ void	plus_inplace(t_world_pnt *a, t_world_pnt *b);
 void	minus_inplace_v(t_view_pnt *a, t_view_pnt *b);
 void	plus_inplace_v(t_view_pnt *a, t_view_pnt *b);
 void	multi_inplace_v(t_view_pnt *a, double *mult);
+void printiter(t_world_pnt *w, void *args);
+void printviter(t_view_pnt *v, void *args);
 
 #endif

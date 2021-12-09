@@ -2,6 +2,7 @@
 #define FDF_PROJECTION_H
 # include "fdf.h"
 # include "iter.h"
+#include "params.h"
 # include "Input_Exit.h"
 
 void	projection(t_vars_fdf *vars_fdf);

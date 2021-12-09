@@ -65,4 +65,8 @@ void	dot1x2(t_world_pnt *a, t_matrix mat4x4)
 	a->y += tmp.y * mat4x4[1][1];
 	a->y += tmp.z * mat4x4[2][1];
 	a->y += 1 * mat4x4[3][1];
+	a->z = tmp.x * mat4x4[0][2];
+	a->z += tmp.y * mat4x4[1][2];
+	a->z += tmp.z * mat4x4[2][2];
+	a->z += 1 * mat4x4[3][2];
 }

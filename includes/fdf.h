@@ -93,6 +93,7 @@ typedef struct s_vars_fdf {
 	t_camera	camera;
 	t_view_pnt	**view;
 	t_view_pnt	**view_cp;
+	enum e_proj p;
 	double		tile;
 	double		tile_cp;
 	t_view_pnt 	trans;

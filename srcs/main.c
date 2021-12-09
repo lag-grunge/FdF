@@ -15,32 +15,39 @@
 #include "draw.h"
 #include "actions.h"
 
-static void	init_states(t_vars_fdf *vars_fdf)
+static void init_vars(t_vars_fdf *vars_fdf, t_map *map)
 {
+	vars_fdf->mlx = mlx_init();
+	if (!vars_fdf->mlx)
+		exit_on_mlx_error(map);
+	vars_fdf->map = map;
+	vars_fdf->p = iso;
 	vars_fdf->states.r_pressed = 0;
 	vars_fdf->camera.octant = 0;
 	vars_fdf->trans.x = 0;
 	vars_fdf->trans.y = 0;
-	vars_fdf->view = NULL;
+	init_view(&vars_fdf->view, vars_fdf);
 	vars_fdf->view_cp = NULL;
+}
+static void init_window(t_vars_fdf *vars, char *name)
+{
+	vars->win = mlx_new_window(vars->mlx, vars->win_x, vars->win_y, name);
+	if (!vars->win)
+		exit_on_win_error(vars);
+
 }
 
 static void	graphics(t_map *map, char *name)
 {
 	t_vars_fdf	vars;
 
-	vars.mlx = mlx_init();
-	if (!vars.mlx)
-		exit_on_mlx_error(map);
-	model_world(map);
-	vars.map = map;
-	init_states(&vars);
+	init_vars(&vars, map);
+	model_world(vars.map);
 	init_camera(&vars);
 	projection(&vars);
-	get_win_sizes(&vars);
-	vars.win = mlx_new_window(vars.mlx, vars.win_x, vars.win_y, name);
-	if (!vars.win)
-		exit_on_win_error(&vars);
+	if (vars.p == iso)
+		get_win_sizes(&vars);
+	init_window(&vars, name);
 	init_frames(&vars);
 	render_frame(&vars);
 	mlx_loop_hook(vars.mlx, rotate, &vars);
