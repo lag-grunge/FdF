@@ -6,7 +6,7 @@
 /*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 16:28:01 by sdalton           #+#    #+#             */
-/*   Updated: 2021/10/09 16:28:02 by sdalton          ###   ########.fr       */
+/*   Updated: 2022/01/18 05:17:59 by sdalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	rotate(t_vars_fdf *vars_fdf)
 		if (comp_world_rotates(map))
 		{
 			projection(vars_fdf);
-			vars_fdf->tile = calc_tile(vars_fdf, vars_fdf->tile);
+			iter_view(vars_fdf, minus_inplace_v, &vars_fdf->trans);
 			render_frame(vars_fdf);
 		}
 	}

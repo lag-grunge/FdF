@@ -6,11 +6,12 @@
 /*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 21:19:27 by sdalton           #+#    #+#             */
-/*   Updated: 2021/11/08 04:41:34 by sdalton          ###   ########.fr       */
+/*   Updated: 2022/01/18 15:49:33 by sdalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Input_Exit.h"
+#include "../../includes/fdf.h"
 
 size_t	get_map_width(int fd)
 {
@@ -28,14 +29,26 @@ size_t	get_map_width(int fd)
 	return (nl_counts + 1);
 }
 
-void	init_map(t_map *map, int fd)
+void	init_map(t_map **m, int fd)
 {
+	t_map	*map;
+
+	map = ft_calloc(sizeof(t_map), 1);
+	if (!map)
+		exit(malloc_error);
 	map->width = get_map_width(fd);
-	map->length = (size_t *)malloc(sizeof(size_t) * map->width);
-	map->altus = (int **)malloc(sizeof(int *) * map->width);
-	map->color = (t_uint **)malloc(sizeof(t_uint *) * map->width);
+	map->length = (size_t *)ft_calloc(sizeof(size_t), map->width);
+	if (!map->length)
+		exit(malloc_error);
+	map->altus = (int **)ft_calloc(sizeof(int *), map->width);
+	if (!map->altus)
+		exit(malloc_error);
+	map->color = (t_uint **)ft_calloc(sizeof(t_uint *), map->width);
+	if (!map->color)
+		exit(malloc_error);
 	map->world = NULL;
 	map->world_cp = NULL;
+	*m = map;
 }
 
 static size_t	check_line(char **sp_line, size_t i, t_map *map)
@@ -73,8 +86,8 @@ static int	get_map_line(char **sp_line, size_t i, t_map *map)
 	map->length[i] = check_line(sp_line, i, map);
 	if (!map->length[i])
 		return (-1);
-	map->altus[i] = (int *)malloc(sizeof(int) * map->length[i]);
-	map->color[i] = (t_uint *)malloc(sizeof(t_uint) * map->length[i]);
+	map->altus[i] = (int *)ft_calloc(sizeof(int), map->length[i]);
+	map->color[i] = (t_uint *)ft_calloc(sizeof(t_uint), map->length[i]);
 	if (!map->altus[i])
 		return (-1);
 	j = 0;

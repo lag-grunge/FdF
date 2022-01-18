@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   translate.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 05:23:54 by sdalton           #+#    #+#             */
-/*   Updated: 2022/01/18 05:23:59 by sdalton          ###   ########.fr       */
+/*   Created: 2021/04/26 12:00:31 by sdalton           #+#    #+#             */
+/*   Updated: 2021/04/26 12:08:08 by sdalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "libft.h"
 
-#include "actions.h"
+/*		The bzero() function erases the data in the n bytes of the memory	*/
+/*       	starting at the location pointed to by s, by writing zeros 		*/	
+/*        	(bytes	containing '\0') to that area.							*/
+/*		Return value is none.												*/
 
-int	translate(t_vars_fdf *vars_fdf, int x, int y)
+void	ft_bzero(void *b, size_t n)
 {
-	vars_fdf->trans.x += x;
-	vars_fdf->trans.y += y;
-	projection(vars_fdf);
-	if (vars_fdf->states.r_pressed)
-		return (1);
-	iter_view(vars_fdf, minus_inplace_v, &vars_fdf->trans);
-	render_frame(vars_fdf);
-	return (0);
+	ft_memset(b, 0, n);
 }

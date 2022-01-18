@@ -19,6 +19,7 @@
 #  define XK_ESC 65307
 #  define XK_R 114
 #  define XK_C 99
+#  define XK_P 112
 #  define XK_UP 65362
 #  define XK_DOWN 65364
 #  define XK_RIGHT 65363

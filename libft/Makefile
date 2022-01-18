@@ -1,6 +1,6 @@
 NAME = libft.a
 
-SRCS = ft_memcpy.c ft_memchr.c \
+SRCS = ft_memcpy.c ft_memchr.c ft_memset.c ft_bzero.c \
 		ft_strlen.c ft_strlcpy.c ft_strlcat.c \
 		ft_strchr.c ft_strjoin.c \
 		ft_atoi.c ft_isdigit.c ft_strncmp.c \
@@ -15,10 +15,12 @@ INCLUDE = ./
 
 CC = gcc
 
-CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -I${INCLUDE}
 
 all : ${NAME}
+dbg : ${NAME}
+dbg : CFLAGS += -g -fsanitize=address
 
 $(NAME) :	${OBJS}
 	ar cr ${NAME} $?

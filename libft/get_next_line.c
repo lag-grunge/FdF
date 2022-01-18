@@ -6,7 +6,7 @@
 /*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 17:15:43 by sdalton           #+#    #+#             */
-/*   Updated: 2021/11/08 01:05:19 by sdalton          ###   ########.fr       */
+/*   Updated: 2022/01/18 15:18:19 by sdalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,44 @@ static size_t	ft_realloc(char **buf, size_t buf_size)
 	return (buf_size * 2);
 }
 
-int	read_fd_to_buf(char **buf_ptr, int fd)
+static int	read_bytes(char **buf, size_t *buf_size, size_t *i, int fd)
+{
+	int	ret;
+
+	if (*i >= *buf_size - READ_SIZE + 1)
+		*buf_size = ft_realloc(buf, *buf_size);
+	ret = read(fd, *buf + *i, READ_SIZE - 1);
+	if (ret <= 0 || !*buf_size)
+		return (ret);
+	*i += ret;
+	(*buf)[*i] = 0;
+	return (ret);
+}
+
+static int	read_fd_to_buf(char **buf_ptr, int fd)
 {
 	char	*buf;
-	int 	ret;
 	size_t	i;
-	size_t	cur_BUFFER_SIZE;
+	size_t	cur_buffer_size;
+	int		ret;
 
-	cur_BUFFER_SIZE = BUFFER_SIZE;
-	buf = malloc(cur_BUFFER_SIZE);
+	cur_buffer_size = BUFFER_SIZE;
+	buf = malloc(cur_buffer_size);
 	if (!buf)
 		return (-1);
 	buf[0] = 0;
 	i = 0;
 	ret = 1;
-	while (!ft_strchr(buf,'\n'))
-	{
-		if (i >= cur_BUFFER_SIZE - READ_SIZE + 1)
-			cur_BUFFER_SIZE = ft_realloc(&buf, cur_BUFFER_SIZE);
-		ret = read(fd, buf + i, READ_SIZE - 1);
-		if (ret <= 0 || !cur_BUFFER_SIZE)
-			break ;
-		i += ret;
-		buf[i] = 0;
-	}
+	while (ret > 0 && !ft_strchr(buf, '\n'))
+		ret = read_bytes(&buf, &cur_buffer_size, &i, fd);
+	if (ret && i > 0)
+		*buf_ptr = buf;
 	if (ret == -1 || i == 0)
-	{
 		free(buf);
-		if (i == 0)
-			return (0);
-		return (-1);
-	}
-	*buf_ptr = buf;
+	if (i == 0)
+		ret = 0;
+	if (ret <= 0)
+		return (ret);
 	return (1);
 }
 

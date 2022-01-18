@@ -6,7 +6,7 @@
 /*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 14:27:09 by sdalton           #+#    #+#             */
-/*   Updated: 2021/10/09 14:27:11 by sdalton          ###   ########.fr       */
+/*   Updated: 2022/01/18 05:25:23 by sdalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,10 @@ int	key_press_handle(int keycode, t_vars_fdf *vars_fdf)
 		translate(vars_fdf, 10, 0);
 	if (keycode == XK_RIGHT)
 		translate(vars_fdf, -10, 0);
+	if (keycode == XK_P)
+	{
+		vars_fdf->p = !vars_fdf->p;
+		graphics(NULL, NULL);
+	}
 	return (0);
 }

@@ -6,7 +6,9 @@
 # define B10 "0123456789"
 # define P10 "\0"
 
-void	init_map(t_map *map, int fd);
+void	graphics(t_map *map, char *name);
+
+void	init_map(t_map **m, int fd);
 int		get_map(int fd, t_map *map);
 void	init_view(t_view_pnt ***view, t_vars_fdf *vars_fdf);
 void	init_world(t_world_pnt ***w, t_map *map);
@@ -18,8 +20,10 @@ void	free_2d_array(void *arr_ptr, size_t rows);
 void	free_view(t_vars_fdf *vars_fdf);
 void	free_map(t_map *map);
 
+void	del_frms(t_vars_fdf *vars_fdf);
 int		destroy_fdf_and_exit(t_vars_fdf *vars_fdf);
-int		exit_on_mlx_error(t_map	*map);
+void destroy_win(t_vars_fdf *vars_fdf);
+int exit_on_mlx_error(t_vars_fdf *vars_fdf, t_map *map);
 int		exit_on_win_error(t_vars_fdf *vars_fdf);
 
 #endif

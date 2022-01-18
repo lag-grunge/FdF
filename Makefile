@@ -2,9 +2,9 @@ NAME = fdf
 
 SRCS_LIST_ACT := key_button.c change_camera.c rotation.c zoom.c translate.c
 DIR_ACT = ./srcs/actions
-SRCS_LIST_PROJ := model.c projection.c dot_cross.c proj_utils.c
+SRCS_LIST_PROJ := model.c projection.c dot_cross.c proj_utils.c matrix.c
 DIR_PROJ = ./srcs/projection
-SRCS_LIST_PAR :=	params.c max_size.c pars.c
+SRCS_LIST_PAR :=	params.c max_size.c 
 DIR_PAR = ./srcs/params
 SRCS_LIST_DRAW := render.c  primitives.c color.c
 DIR_DRAW = ./srcs/draw
@@ -27,15 +27,12 @@ DIRS = ${DIR_ACT} ${DIR_DRAW} ${DIR_IN_EXIT} ${DIR_ITER} ${DIR_PAR} ${DIR_PROJ}
 DEPS = ${OBJS:.o=.d}
 
 
-SCREEN_WIDTH = 2048
-SCREEN_HEIGHT = 1152
-
-MLX_DIR = ./libmlx
+MLX_DIR = ./minilibx-linux
 LIBFT = libft.a
 LIBFT_DIR = ./libft
 
 CC = gcc
-CFLAGS := -g -Wall -Wextra -Werror -fsanitize=address -MMD
+CFLAGS := -Wall -Wextra -Werror -MMD
 LDFLAGS := -L${LIBFT_DIR} -L${MLX_DIR}
 
 OS = $(shell uname -s)
@@ -45,22 +42,30 @@ LIBRARIES = ${MLX_DIR}/${MLX} ${LIBFT_DIR}/${LIBFT}
 FRAMEWORK = -framework OpenGl -framework Appkit
 INCLUDE = -I/opt/X11/inlcude/X11 -I${LIBFT_DIR} -I./includes
 CFLAGS += -DMACOS ${INCLUDE}
+SCREEN_WIDTH = 2048
+SCREEN_HEIGHT = 1152
 endif
 ifeq ($(OS), Linux)
-MLX = libmlx_Linux.a
-LIBRARIES = ${MLX_DIR}/${MLX} ${LIBFT_DIR}/${LIBFT} -L/usr/lib -lXext -lX11 -lm -lz 
+MLX = libmlx.a
+LIBRARIES = ${MLX_DIR}/${MLX} -L/usr/lib -lXext -lX11 -lm -lz -lft
 INCLUDE = -I${LIBFT_DIR} -I/usr/include/X11 -I./includes
 CFLAGS += -DLINUX ${INCLUDE}
+SCREEN_WIDTH = 1600
+SCREEN_HEIGHT = 900
 endif
-TEST_LINKS = https://projects.intra.42.fr/uploads/document/document/5974/maps.zip
+TEST_LINKS = https://projects.intra.42.fr/uploads/document/document/6467/maps.zip/
+
 
 all : ${LIBFT} ${NAME}
+psp : ${LIBFT} ${NAME}
+psp : PSP=1
+dbg : ${LIBFT} ${NAME}
+dbg : CFLAGS += -g -fsanitize=address
+dbg : LIBRARIES += -lasan
+dbg : DEBUG=1
 
-${LIBFT} : ${LIBFT_DIR}
-	make -C $^
-
-${NAME} : srcs/main.c ${OBJS}
-	${CC} ${CFLAGS} ${LDFLAGS} $^ -o $@ ${LIBRARIES} ${FRAMEWORK}
+${NAME} : srcs/main.c srcs/graphics.c ${OBJS}
+	${CC} ${CFLAGS} $(if ${PSP},-DPSP,) ${LDFLAGS} $^ -o $@ ${LIBRARIES} ${FRAMEWORK}
 
 ${OBJS_DIR}/%.o : ${DIR_ACT}/%.c
 	${CC} ${CFLAGS} -c $< -DSCREEN_WIDTH=${SCREEN_WIDTH} -DSCREEN_HEIGHT=${SCREEN_HEIGHT} -o $@
@@ -91,11 +96,16 @@ clean :
 	rm -rf ${OBJS} ${DEPS}
 
 fclean : clean
-	rm -rf ${LIBFT}
+	rm -rf ${LIBFT_DIR}/${LIBFT}
 	rm -rf ${NAME}
 
 re : fclean all
 
 -include ${DEPS}
 
-.PHONY : all clean fclean re launch_tests
+${LIBFT} : libft ;
+
+.PHONY : all clean fclean re launch_tests libft
+
+libft :
+	@make -C ${LIBFT_DIR} $(if ${DEBUG},dbg,)

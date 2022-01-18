@@ -64,6 +64,10 @@ static int	border(t_view_pnt *v1, t_view_pnt *v2, t_vars_fdf *vars_fdf)
 
 	winx = vars_fdf->win_x;
 	winy = vars_fdf->win_y;
+	if (isnan(v1->x) || isnan(v1->y))
+		return (0);
+	if (isnan(v2->x) || isnan(v2->y))
+		return (0);
 	if (v2->y < 0 || v2->x < 0 || v1->x < 0 || v1->y < 0)
 		return (0);
 	if (v1->x >= winx)
