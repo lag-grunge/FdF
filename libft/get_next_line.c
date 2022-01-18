@@ -6,7 +6,7 @@
 /*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 17:15:43 by sdalton           #+#    #+#             */
-/*   Updated: 2022/01/18 15:18:19 by sdalton          ###   ########.fr       */
+/*   Updated: 2022/01/18 18:12:51 by sdalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,6 @@
 #ifndef READ_SIZE
 # define READ_SIZE 64
 #endif
-
-static size_t	ft_realloc(char **buf, size_t buf_size)
-{
-	char	*tmp;
-
-	tmp = *buf;
-	*buf = malloc(buf_size * 2);
-	if (!*buf)
-	{
-		free(tmp);
-		return (0);
-	}
-	ft_memcpy(*buf, tmp, buf_size);
-	free(tmp);
-	return (buf_size * 2);
-}
 
 static int	read_bytes(char **buf, size_t *buf_size, size_t *i, int fd)
 {
@@ -64,22 +48,23 @@ static int	read_fd_to_buf(char **buf_ptr, int fd)
 	ret = 1;
 	while (ret > 0 && !ft_strchr(buf, '\n'))
 		ret = read_bytes(&buf, &cur_buffer_size, &i, fd);
-	if (ret && i > 0)
+	if (i > 0)
 		*buf_ptr = buf;
 	if (ret == -1 || i == 0)
 		free(buf);
 	if (i == 0)
 		ret = 0;
-	if (ret <= 0)
+	if (ret < 0 || i == 0)
 		return (ret);
 	return (1);
 }
 
 int	swap_lines(char **rem, char **buf)
 {
-	char *tmp;
-	char *nl;
+	char	*tmp;
 
+	if (!*buf && *rem)
+		*buf = *rem;
 	if (*buf && *rem)
 	{
 		tmp = *buf;
@@ -87,11 +72,16 @@ int	swap_lines(char **rem, char **buf)
 		free(tmp);
 		free(*rem);
 	}
-	else if (*rem)
-		*buf = *rem;
 	*rem = NULL;
 	if (!*buf)
 		return (-1);
+	return (0);
+}
+
+static int	get_remainder(char **rem, char **buf)
+{
+	char	*nl;
+
 	nl = ft_strchr(*buf, '\n');
 	if (!nl)
 		return (0);
@@ -99,19 +89,17 @@ int	swap_lines(char **rem, char **buf)
 	if (!nl[1])
 		return (0);
 	*rem = ft_strdup(nl + 1);
-	if (!*rem)
-	{
-		free(*buf);
-		return (-1);
-	}
-	return (0);
+	if (*rem)
+		return (0);
+	free(*buf);
+	return (-1);
 }
 
 int	get_next_line(int fd, char **line)
 {
-	char		*buf;
 	static char	*rem;
-	int 		ret;
+	char		*buf;
+	int			ret;
 
 	buf = NULL;
 	if (!rem || !ft_strchr(rem, '\n'))
@@ -121,6 +109,8 @@ int	get_next_line(int fd, char **line)
 			return (ret);
 	}
 	if (swap_lines(&rem, &buf) == -1)
+		return (-1);
+	if (get_remainder(&rem, &buf) == -1)
 		return (-1);
 	*line = buf;
 	return (1);

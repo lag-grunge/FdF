@@ -6,7 +6,7 @@
 /*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 16:26:07 by sdalton           #+#    #+#             */
-/*   Updated: 2021/10/09 16:26:09 by sdalton          ###   ########.fr       */
+/*   Updated: 2022/01/18 18:22:00 by sdalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	create_image(t_vars_fdf *vars_fdf, t_data *data)
 	data->addr = mlx_get_data_addr(data->img, bpp, line_len, endian);
 }
 
-static void copy_frame(t_data *cur_frame, t_data *next_frame)
+static void	copy_frame(t_data *cur_frame, t_data *next_frame)
 {
 	cur_frame->img = next_frame->img;
 	cur_frame->addr = next_frame->addr;
@@ -52,7 +52,7 @@ int	render_frame(t_vars_fdf *vars_fdf)
 	next_frame = vars_fdf->frms[1];
 	create_image(vars_fdf, next_frame);
 	iter_view(vars_fdf, draw_pnt_lines, vars_fdf);
-	mlx_put_image_to_window(vars_fdf->mlx, vars_fdf->win,\
+	mlx_put_image_to_window(vars_fdf->mlx, vars_fdf->win, \
 		next_frame->img, 0, 0);
 	if (cur_frame->img)
 	{

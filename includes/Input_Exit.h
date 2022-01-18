@@ -1,5 +1,17 @@
-#ifndef FDF_INPUT_EXIT_H
-#define FDF_INPUT_EXIT_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Input_Exit.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/18 18:27:10 by sdalton           #+#    #+#             */
+/*   Updated: 2022/01/18 18:27:42 by sdalton          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef INPUT_EXIT_H
+# define INPUT_EXIT_H
 # include "fdf.h"
 # define B16 "0123456789abcdef"
 # define P16 "0x"
@@ -22,8 +34,8 @@ void	free_map(t_map *map);
 
 void	del_frms(t_vars_fdf *vars_fdf);
 int		destroy_fdf_and_exit(t_vars_fdf *vars_fdf);
-void destroy_win(t_vars_fdf *vars_fdf);
-int exit_on_mlx_error(t_vars_fdf *vars_fdf, t_map *map);
+void	destroy_win(t_vars_fdf *vars_fdf);
+int		exit_on_mlx_error(t_vars_fdf *vars_fdf, t_map *map);
 int		exit_on_win_error(t_vars_fdf *vars_fdf);
 
 #endif

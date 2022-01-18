@@ -6,7 +6,7 @@
 /*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 16:14:39 by sdalton           #+#    #+#             */
-/*   Updated: 2022/01/18 07:06:48 by sdalton          ###   ########.fr       */
+/*   Updated: 2022/01/18 18:19:42 by sdalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static void	init_position(t_vars_fdf *vars_fdf, int change_proj)
 		camera->position.x = wmax.x / 2.0;
 		camera->position.y = find_max2i((int)wmax.y, \
 		(int)wmax.z) / 2.0 / vars_fdf->tile * 4.0 * vars_fdf->tile_cp;
-		camera->position.z = vars_fdf->map->world_min.z + (1 - 2 * (octant % 4 == 0)) * (wmax.z / 10. + 4.0);
+		camera->position.z = vars_fdf->map->world_min.z + \
+			(1 - 2 * (octant % 4 == 0)) * (wmax.z / 10. + 4.0);
 	}
 	camera->position.x *= (1 - 2 * (octant % 2 == 1));
 	camera->position.y *= (1 - 2 * (octant % 4 == 2));

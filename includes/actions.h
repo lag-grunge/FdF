@@ -1,5 +1,17 @@
-#ifndef FDF_ACTIONS_H
-#define FDF_ACTIONS_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   actions.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/18 18:23:02 by sdalton           #+#    #+#             */
+/*   Updated: 2022/01/18 18:23:50 by sdalton          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef ACTIONS_H
+# define ACTIONS_H
 # include "fdf.h"
 # include "Input_Exit.h"
 # include "projection.h"

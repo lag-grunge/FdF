@@ -6,24 +6,24 @@
 /*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 14:42:14 by sdalton           #+#    #+#             */
-/*   Updated: 2021/06/24 12:53:24 by sdalton          ###   ########.fr       */
+/*   Updated: 2022/01/18 18:17:29 by sdalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*	Function name ft_strjoin									*/
+/*	Function name ft_strjoin					*/
 /*	Prototype char *ft_strjoin(char const *s1, char const *s2);	*/
-/*	Turn in files -												*/
-/*	Parameters #1. The prefix string.							*/
-/*	#2. The suffix string.										*/
+/*	Turn in files -							*/
+/*	Parameters #1. The prefix string.				*/
+/*	#2. The suffix string.						*/
 /*	Return value The new string. NULL if the allocation fails.	*/
-/*	External functs. malloc										*/
-/*	Description Allocates (with malloc(3)) and returns a new	*/ 	
-/*	string, which is the result of the concatenation			*/ 	
-/*	of ’s1’ and ’s2’.											*/ 	
+/*	External functs. malloc						*/
+/*	Description Allocates (with malloc(3)) and returns a new	*/	
+/*	string, which is the result of the concatenation		*/
+/*	of ’s1’ and ’s2’.						*/
 
-char	*ft_strjoin(char const *s1, char const *s2)	
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*js;
 	size_t	s1_len;

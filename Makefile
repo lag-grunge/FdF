@@ -27,7 +27,7 @@ DIRS = ${DIR_ACT} ${DIR_DRAW} ${DIR_IN_EXIT} ${DIR_ITER} ${DIR_PAR} ${DIR_PROJ}
 DEPS = ${OBJS:.o=.d}
 
 
-MLX_DIR = ./minilibx-linux
+MLX_DIR = ./libmlx
 LIBFT = libft.a
 LIBFT_DIR = ./libft
 
@@ -46,7 +46,7 @@ SCREEN_WIDTH = 2048
 SCREEN_HEIGHT = 1152
 endif
 ifeq ($(OS), Linux)
-MLX = libmlx.a
+MLX = libmlx_Linux.a
 LIBRARIES = ${MLX_DIR}/${MLX} -L/usr/lib -lXext -lX11 -lm -lz -lft
 INCLUDE = -I${LIBFT_DIR} -I/usr/include/X11 -I./includes
 CFLAGS += -DLINUX ${INCLUDE}

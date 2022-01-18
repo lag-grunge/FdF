@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/18 18:14:31 by sdalton           #+#    #+#             */
+/*   Updated: 2022/01/18 18:14:33 by sdalton          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stdlib.h>
@@ -25,6 +37,7 @@ size_t	ft_spllen(char **spl);
 void	clean_split(char **split, unsigned int i);
 
 void	*ft_calloc(size_t nmemb, size_t size);
+size_t	ft_realloc(char **buf, size_t buf_size);
 char	*ft_strdup(const char *s);
 int		ft_isdigit(int c);
 int		ft_atoi(char *s);

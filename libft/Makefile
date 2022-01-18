@@ -4,7 +4,7 @@ SRCS = ft_memcpy.c ft_memchr.c ft_memset.c ft_bzero.c \
 		ft_strlen.c ft_strlcpy.c ft_strlcat.c \
 		ft_strchr.c ft_strjoin.c \
 		ft_atoi.c ft_isdigit.c ft_strncmp.c \
-		ft_calloc.c ft_strdup.c \
+		ft_calloc.c ft_realloc.c ft_strdup.c \
 		ft_substr.c	ft_split.c \
 		get_next_line.c ft_atoi_base.c
 

@@ -6,7 +6,7 @@
 /*   By: sdalton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 15:44:15 by sdalton           #+#    #+#             */
-/*   Updated: 2021/10/09 15:44:16 by sdalton          ###   ########.fr       */
+/*   Updated: 2022/01/18 18:26:04 by sdalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,10 @@ typedef struct s_vars_fdf {
 	t_camera	camera;
 	t_view_pnt	**view;
 	t_view_pnt	**view_cp;
-	enum e_proj p;
+	enum e_proj	p;
 	double		tile;
 	double		tile_cp;
-	t_view_pnt 	trans;
+	t_view_pnt	trans;
 	t_view_pnt	screen_min;
 	t_view_pnt	screen_max;
 	t_states	states;
